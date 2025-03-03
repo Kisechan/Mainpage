@@ -1,8 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '@/views/Home.vue' // 确保路径正确
+import HomeView from '../views/HomeView.vue'
 
 const routes = [
-  { path: '/', component: Home } // 确保根路径指向 Home 组件
+  {
+    path: '/',
+    name: 'home',
+    component: HomeView
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import('../views/AboutView.vue')
+  }
 ]
 
 const router = createRouter({
