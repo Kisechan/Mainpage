@@ -2,20 +2,33 @@
 </script>
 
 <template>
-  <router-view />
+  <div>
+    <!-- 全局导航栏 -->
+    <nav>
+      <router-link to="/">首页</router-link> |
+      <router-link to="/about">关于</router-link>
+    </nav>
+
+    <!-- 路由匹配的组件会渲染在这里 -->
+    <router-view />
+  </div>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/* 全局样式 */
+nav {
+  padding: 10px;
+  background-color: #f0f0f0;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+nav a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #333;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+nav a.router-link-active {
+  color: #42b983;
+  font-weight: bold;
 }
 </style>
