@@ -1,12 +1,55 @@
+/* 定义 LXGW WenKai 字体 */
 @font-face {
-  font-family: "jx";
-  src: url("@/assets/fonts/jx.ttf") format("truetype");
+  font-family: 'LXGW WenKai';
+  src: url('@/assets/fonts/LXGWWenKai-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'LXGW WenKai';
+  src: url('@/assets/fonts/LXGWWenKai-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LXGW WenKai';
+  src: url('@/assets/fonts/LXGWWenKai-Light.ttf') format('truetype');
+  font-weight: 300; /* Light 通常对应 font-weight: 300 */
+  font-style: normal;
+}
+
+/* 定义 LXGW WenKai Mono 字体 */
+@font-face {
+  font-family: 'LXGW WenKai Mono';
+  src: url('@/assets/fonts/LXGWWenKaiMono-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LXGW WenKai Mono';
+  src: url('@/assets/fonts/LXGWWenKaiMono-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LXGW WenKai Mono';
+  src: url('@/assets/fonts/LXGWWenKaiMono-Light.ttf') format('truetype');
+  font-weight: 300; /* Light 通常对应 font-weight: 300 */
+  font-style: normal;
+}
+
+/* 设置全局字体 */
 body {
-  font-family: "jx", sans-serif;
+  font-family: 'LXGW WenKai', sans-serif;
   margin: 0;
   padding: 0;
+}
+
+/* 设置代码或等宽文本的字体 */
+code, pre, .monospace {
+  font-family: 'LXGW WenKai Mono', monospace;
 }

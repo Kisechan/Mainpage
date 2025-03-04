@@ -1,6 +1,5 @@
 <template>
   <div class="about-container">
-    <!-- <NavBar /> -->
     <el-main>
       <el-row :gutter="20">
         <!-- 左侧正文 -->
