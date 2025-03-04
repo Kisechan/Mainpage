@@ -17,6 +17,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
     "path": "^0.12.7",
+    "unplugin-vue-components": "^28.4.1",
     "vite": "^6.2.0"
   }
 }

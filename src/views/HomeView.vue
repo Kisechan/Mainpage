@@ -4,7 +4,7 @@
     <el-main>
       <div class="content">
         <h1>test</h1>
-        <p>你说得对</p>
+        <p>Building...</p>
       </div>
     </el-main>
     <AppFooter />
