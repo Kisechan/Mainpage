@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "jx";
+  src: url("@/assets/fonts/jx.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "jx", sans-serif;
+  margin: 0;
+  padding: 0;
+}

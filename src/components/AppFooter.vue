@@ -1,30 +1,24 @@
 <template>
-  <el-footer class="app-footer">
-    <div class="social-links">
-      <a
-        v-for="item in socialLinks"
-        :key="item.name"
-        :href="item.url"
-        target="_blank"
-      >
-        <el-icon :size="24">
-          <component :is="item.icon" />
-        </el-icon>
-        <span class="link-name">{{ item.name }}</span>
-      </a>
-    </div>
-
-    <div class="copyright">
-      <p>2024 - 2025 Kisechan</p>
+  <el-footer>
+    <div class="footer-content">
+      <p>© 2023 Kisechan</p>
+      <p>还在做还在做还在做还在做</p>
     </div>
   </el-footer>
 </template>
 
 <script setup>
-const socialLinks = [
-  { name: "github", icon: "Github", url: "https://github.com" },
-  { name: "email", icon: "Message", url: "mailto:your@email.com" },
-];
+// 可以在这里定义一些逻辑
 </script>
 
-<style scoped></style>
+<style scoped>
+.el-footer {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+</style>

@@ -21,7 +21,6 @@
         </el-col>
       </el-row>
     </el-main>
-    <AppFooter />
   </div>
 </template>
 
@@ -29,6 +28,4 @@
 </style>
 
 <script setup>
-import NavBar from '@/components/NavBar.vue'
-import AppFooter from '@/components/AppFooter.vue'
 </script>
