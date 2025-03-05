@@ -5,9 +5,13 @@
         <!-- 左侧正文 -->
         <el-col :span="16">
           <el-card>
-            <p>passage...</p>
+            <p>某校 SE 专业学生，前 CChOer 。</p>
+            <p>什么都会一点。</p>
+            <p>
+              联系我：
+              <a href="mailto:admin@kisechan.space">admin@kisechan.space</a>
+            </p>
             <div class="github-calendar-container">
-              <!-- 贡献图容器 -->
               <div id="github-graph"></div>
             </div>
           </el-card>
@@ -34,11 +38,12 @@ import GitHubCalendar from "github-calendar";
 // 在组件挂载后初始化 GitHub 贡献图
 onMounted(() => {
   GitHubCalendar("#github-graph", "Kisechan", {
-    responsive: true, // 响应式设计
+    responsive: false, // 响应式设计
     tooltips: true, // 显示提示信息
     headers: {
       Authorization: `token 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`,
     },
+    global_stats: false, // 显示全局统计信息
   });
 });
 </script>
