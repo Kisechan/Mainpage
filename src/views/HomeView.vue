@@ -36,6 +36,9 @@ onMounted(() => {
   GitHubCalendar("#github-graph", "Kisechan", {
     responsive: true, // 响应式设计
     tooltips: true, // 显示提示信息
+    headers: {
+      Authorization: `token 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`,
+    },
   });
 });
 </script>
