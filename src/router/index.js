@@ -1,21 +1,31 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: () => import('@/views/HomeView.vue')
+    path: "/",
+    name: "home",
+    component: () => import("@/views/HomeView.vue"),
+    meta: { hideFooter: true, title: "主页" },
   },
   {
-    path: '/links',
-    name: 'links',
-    component: () => import('@/views/LinksView.vue')
-  }
-]
+    path: "/links",
+    name: "links",
+    component: () => import("@/views/LinksView.vue"),
+    meta: { title: "友链" },
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
-})
+  routes,
+});
 
-export default router
+router.beforeEach((to, from, next) => {
+  const title = to.meta.title; // 获取路由元信息中的标题
+  if (title) {
+    document.title = "Kisechan | " + title; // 设置页面标题
+  }
+  next();
+});
+
+export default router;

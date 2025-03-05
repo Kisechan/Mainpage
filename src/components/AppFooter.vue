@@ -2,6 +2,7 @@
   <el-footer>
     <div class="footer-content">
       <div class="footer-text">
+        <p><a href="https://icp.gov.moe/?keyword=20251453" target="_blank">萌ICP备20251453号</a></p>
         <p>
           &copy; 2025 By
           <a

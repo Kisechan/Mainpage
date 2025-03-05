@@ -15,6 +15,7 @@
     "github-calendar": "^2.3.4",
     "js-yaml": "^4.1.0",
     "vue": "^3.5.13",
+    "vue-page-transition": "^0.2.2",
     "vue-router": "^4.5.0",
     "yaml": "^2.7.0"
   },

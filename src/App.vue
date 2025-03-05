@@ -6,8 +6,10 @@ import AppFooter from "./components/AppFooter.vue";
 <template>
   <div>
     <NavBar />
-    <router-view />
-    <AppFooter />
+    <transition name="fade" mode="out-in">
+      <router-view />
+    </transition>
+    <AppFooter v-if="!$route.meta.hideFooter" />
   </div>
 </template>
 
@@ -26,5 +28,15 @@ html, body {
 
 .main-content {
   flex: 1; /* 占据剩余空间 */
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

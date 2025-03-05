@@ -45,6 +45,26 @@
               <i class="fa-solid fa-envelope"></i>
             </a>
           </div>
+          <div class="footer-content">
+            <p>
+              <a href="https://icp.gov.moe/?keyword=20251453" target="_blank"
+                >萌ICP备20251453号</a
+              >
+            </p>
+            <p>
+              &copy; 2025 By
+              <a
+                href="https://github.com/Kisechan"
+                target="_blank"
+                rel="nofollow noopener"
+                ><strong>Kisechan</strong></a
+              >
+            </p>
+            <p style="font-size: 0.75em">
+              Made With <a href="https://cn.vuejs.org/">Vue3</a> &
+              <a href="https://element-plus.org/zh-CN/">Element Plus</a>
+            </p>
+          </div>
         </el-col>
       </el-row>
     </el-main>
@@ -119,5 +139,10 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: 24px; /* 设置 author-info 和 social-icons 之间的间隔 */
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 </style>
