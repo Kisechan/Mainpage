@@ -1,23 +1,6 @@
 <template>
   <el-footer>
     <div class="footer-content">
-      <div class="social-icons">
-        <a href="https://github.com/Kisechan" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.zhihu.com/people/ptkise" target="_blank">
-          <i class="fab fa-zhihu"></i>
-        </a>
-        <a href="https://space.bilibili.com/174541536" target="_blank">
-          <i class="fab fa-bilibili"></i>
-        </a>
-        <a href="https://blog.kisechan.space" target="_blank">
-          <i class="fa-solid fa-blog"></i>
-        </a>
-        <a href="mailto:admin@kisechan.space" target="_blank">
-          <i class="fa-solid fa-envelope"></i>
-        </a>
-      </div>
       <div class="footer-text">
         <p>
           &copy; 2025 By
@@ -28,7 +11,9 @@
             ><strong>Kisechan</strong></a
           >
         </p>
-        <p>功能完善中...</p>
+        <p style="font-size: 0.75em;">
+          Made With <a href="https://cn.vuejs.org/">Vue3</a> & <a href="https://element-plus.org/zh-CN/">Element Plus</a>
+        </p>
       </div>
     </div>
   </el-footer>
@@ -49,17 +34,8 @@
   margin: 0 auto;
 }
 
-.social-icons {
+/* .social-icons {
   margin-top: 10px;
-}
+} */
 
-.social-icons a {
-  color: #303133;
-  margin: 0 10px;
-  font-size: 24px;
-}
-
-.social-icons a:hover {
-  color: rgb(159.5, 206.5, 255);
-}
 </style>

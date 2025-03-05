@@ -11,6 +11,8 @@
               可以通过这个邮箱联系我：
               <a href="mailto:admin@kisechan.space">admin@kisechan.space</a>
             </p>
+            <hr />
+            <h3>My Github Contributions</h3>
             <div class="github-calendar-container">
               <div id="github-graph"></div>
             </div>
@@ -18,11 +20,28 @@
         </el-col>
 
         <!-- 右侧作者信息 -->
-        <el-col :span="8">
+        <el-col class="right-column" :span="8">
           <div class="author-info">
             <el-avatar :size="120" :src="avatarUrl" />
-            <h3>Hello</h3>
+            <h2>Hello</h2>
             <i>"Non est ad astra mollis e trris via."</i>
+          </div>
+          <div class="social-icons">
+            <a href="https://github.com/Kisechan" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.zhihu.com/people/ptkise" target="_blank">
+              <i class="fab fa-zhihu"></i>
+            </a>
+            <a href="https://space.bilibili.com/174541536" target="_blank">
+              <i class="fab fa-bilibili"></i>
+            </a>
+            <a href="https://blog.kisechan.space" target="_blank">
+              <i class="fa-solid fa-blog"></i>
+            </a>
+            <a href="mailto:admin@kisechan.space" target="_blank">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
           </div>
         </el-col>
       </el-row>
@@ -43,7 +62,7 @@ onMounted(() => {
     headers: {
       Authorization: `token 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`,
     },
-    global_stats: false, // 显示全局统计信息
+    global_stats: true, // 显示全局统计信息
   });
 });
 </script>
@@ -69,5 +88,27 @@ onMounted(() => {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
+}
+
+.social-icons a {
+  color: #303133;
+  margin: 0 10px;
+  font-size: 24px;
+}
+
+.social-icons a:hover {
+  color: rgb(159.5, 206.5, 255);
+}
+
+.social-icons{
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* 设置 author-info 和 social-icons 之间的间隔 */
 }
 </style>
