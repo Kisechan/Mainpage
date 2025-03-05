@@ -17,6 +17,7 @@
           @mouseenter="hoverEffect(`${categoryIndex}-${linkIndex}`)"
           @mouseleave="resetEffect"
           :style="cardStyle(`${categoryIndex}-${linkIndex}`)"
+          @click="openLink(link.url)"
         >
           <div class="link-content">
             <el-avatar :src="link.avatar" class="link-avatar" />
@@ -28,14 +29,15 @@
         </el-card>
       </div>
     </el-card>
-    <!-- <el-card class="add-link-card">
+    <el-card class="add-link-card">
       <div class="add-link-header">添加友链</div>
       <div class="add-link-content">
         <p>请按照以下格式提交您的友链信息：</p>
         <pre>
 avatar: "您的头像链接"
 title: "您的博客标题"
-description: "您的博客描述"</pre
+description: "您的博客描述"
+url: "您的博客链接"</pre
         >
         <p>
           并发送至：<a href="mailto:links@kisechan.space"
@@ -43,7 +45,7 @@ description: "您的博客描述"</pre
           >
         </p>
       </div>
-    </el-card> -->
+    </el-card>
   </div>
 </template>
 
@@ -82,14 +84,20 @@ export default {
       };
     };
 
+    const openLink = (url) => {
+      window.open(url, "_blank");
+    };
+
     return {
       friendLinks,
       hoverEffect,
       resetEffect,
       cardStyle,
+      openLink,
     };
   },
 };
+
 </script>
 
 <style scoped>
