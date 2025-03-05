@@ -8,7 +8,7 @@
             <p>某校 SE 专业学生，前 CChOer 。</p>
             <p>什么都会一点。</p>
             <p>
-              联系我：
+              可以通过这个邮箱联系我：
               <a href="mailto:admin@kisechan.space">admin@kisechan.space</a>
             </p>
             <div class="github-calendar-container">
