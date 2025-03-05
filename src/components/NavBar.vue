@@ -7,7 +7,7 @@
 
     <!-- 右侧导航选项 -->
     <div class="menu-items">
-      <!-- <el-menu-item index="/">首页</el-menu-item> -->
+      <el-menu-item index="/">首页</el-menu-item>
       <el-menu-item @click="goToBlog">博客</el-menu-item>
       <el-menu-item index="/links">友链</el-menu-item>
     </div>
