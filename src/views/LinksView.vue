@@ -1,35 +1,41 @@
 <template>
   <div class="friend-links">
+    <!-- 加载状态 -->
+    <div v-if="loading" class="loading-container">
+      <el-skeleton :rows="10" animated />
+    </div>
     <!-- 友链列表 -->
-    <el-card
-      v-for="(category, categoryIndex) in friendLinks"
-      :key="categoryIndex"
-      class="category-card"
-    >
-      <template #header>
-        <div class="category-header">{{ category.category }}</div>
-      </template>
-      <div class="links-container">
+    <template v-else>
+      <div>
         <el-card
-          v-for="(link, linkIndex) in category.links"
-          :key="linkIndex"
-          class="link-card"
-          @mouseenter="hoverEffect(`${categoryIndex}-${linkIndex}`)"
-          @mouseleave="resetEffect"
-          :style="cardStyle(`${categoryIndex}-${linkIndex}`)"
-          @click="openLink(link.url)"
+          v-for="(category, categoryIndex) in friendLinks"
+          :key="categoryIndex"
+          class="category-card"
         >
-          <div class="link-content">
-            <el-avatar :src="link.avatar" class="link-avatar" />
-            <div class="link-info">
-              <div class="link-title">{{ link.title }}</div>
-              <div class="link-description">{{ link.description }}</div>
-            </div>
+          <template #header>
+            <div class="category-header">{{ category.category }}</div>
+          </template>
+          <div class="links-container">
+            <el-card
+              v-for="(link, linkIndex) in category.links"
+              :key="linkIndex"
+              class="link-card"
+              @mouseenter="hoverEffect(`${categoryIndex}-${linkIndex}`)"
+              @mouseleave="resetEffect"
+              :style="cardStyle(`${categoryIndex}-${linkIndex}`)"
+              @click="openLink(link.url)"
+            >
+              <div class="link-content">
+                <el-avatar :src="link.avatar" class="link-avatar" />
+                <div class="link-info">
+                  <div class="link-title">{{ link.title }}</div>
+                  <div class="link-description">{{ link.description }}</div>
+                </div>
+              </div>
+            </el-card>
           </div>
         </el-card>
-      </div>
-    </el-card>
-    <!-- <el-card class="add-link-card">
+        <!-- <el-card class="add-link-card">
       <div class="add-link-header">添加友链</div>
       <div class="add-link-content">
         <p>请按照以下格式提交您的友链信息：</p>
@@ -46,6 +52,8 @@ url: "您的博客链接"</pre
         </p>
       </div>
     </el-card> -->
+      </div>
+    </template>
   </div>
 </template>
 
@@ -58,7 +66,7 @@ export default {
   setup() {
     const friendLinks = ref([]);
     const hoveredCardId = ref(null);
-
+    const loading = ref(true);
     // 加载 YAML 文件
     fetch("/links.yml")
       .then((response) => response.text())
@@ -67,6 +75,9 @@ export default {
       })
       .catch((error) => {
         console.error("Failed to load YAML file:", error);
+      })
+      .finally(() => {
+        loading.value = false; // 数据加载完成后，设置 loading 为 false
       });
 
     const hoverEffect = (cardId) => {
@@ -94,10 +105,10 @@ export default {
       resetEffect,
       cardStyle,
       openLink,
+      loading,
     };
   },
 };
-
 </script>
 
 <style scoped>
@@ -184,5 +195,9 @@ export default {
 .link-description {
   font-size: 0.9em;
   color: #666;
+}
+
+.loading-container {
+  padding: 20px;
 }
 </style>
