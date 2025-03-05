@@ -14,7 +14,9 @@
             <hr />
             <h3>My Github Contributions</h3>
             <div class="github-calendar-container">
-              <div id="github-graph"></div>
+              <div id="github-graph">
+                <p v-if="!isLoaded">Loading...</p>
+              </div>
             </div>
           </el-card>
         </el-col>
@@ -52,18 +54,23 @@
 <script setup>
 import avatarUrl from "@/assets/avatar.png";
 import { onMounted } from "vue";
-import GitHubCalendar from "github-calendar";
+import { ref } from "vue";
 
-// 在组件挂载后初始化 GitHub 贡献图
-onMounted(() => {
-  GitHubCalendar("#github-graph", "Kisechan", {
-    responsive: false, // 响应式设计
+const isLoaded = ref(false);
+// 懒加载
+const loadGitHubCalendar = async () => {
+  const GitHubCalendar = await import("github-calendar");
+  GitHubCalendar.default("#github-graph", "Kisechan", {
+    responsive: true, // 响应式设计
     tooltips: true, // 显示提示信息
-    headers: {
-      Authorization: `token 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`,
-    },
-    global_stats: true, // 显示全局统计信息
+    global_stats: false, // 显示全局统计信息
   });
+  isLoaded.value = true;
+};
+
+// 在组件挂载后懒加载 GitHub 贡献图
+onMounted(() => {
+  loadGitHubCalendar();
 });
 </script>
 
@@ -94,11 +101,12 @@ onMounted(() => {
   color: #303133;
   margin: 0 10px;
   font-size: 24px;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .social-icons a:hover {
   color: rgb(159.5, 206.5, 255);
+  transform: scale(1.2);
 }
 
 .social-icons {
