@@ -13,8 +13,10 @@
     "@fortawesome/fontawesome-free": "^6.7.2",
     "element-plus": "^2.9.5",
     "github-calendar": "^2.3.4",
+    "js-yaml": "^4.1.0",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.0",
+    "yaml": "^2.7.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",

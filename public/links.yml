@@ -1,0 +1,11 @@
+- category: "朋友们"
+  links:
+    - avatar: "https://images.kisechan.space/icon.jpg"
+      title: "Kisechan's Blog"
+      description: "Kisechan 的博客"
+    - avatar: "https://example.com/avatar.png"
+      title: "技术博客"
+      description: "这是一个技术博客"
+    - avatar: "https://example.com/avatar.png"
+      title: "技术博客"
+      description: "这是一个技术博客"

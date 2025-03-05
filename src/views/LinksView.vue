@@ -1,13 +1,180 @@
 <template>
-  <div class="about-container">
-    <el-main>
-      <p>Links</p>
-    </el-main>
+  <div class="friend-links">
+    <!-- 友链列表 -->
+    <el-card
+      v-for="(category, categoryIndex) in friendLinks"
+      :key="categoryIndex"
+      class="category-card"
+    >
+      <template #header>
+        <div class="category-header">{{ category.category }}</div>
+      </template>
+      <div class="links-container">
+        <el-card
+          v-for="(link, linkIndex) in category.links"
+          :key="linkIndex"
+          class="link-card"
+          @mouseenter="hoverEffect(`${categoryIndex}-${linkIndex}`)"
+          @mouseleave="resetEffect"
+          :style="cardStyle(`${categoryIndex}-${linkIndex}`)"
+        >
+          <div class="link-content">
+            <el-avatar :src="link.avatar" class="link-avatar" />
+            <div class="link-info">
+              <div class="link-title">{{ link.title }}</div>
+              <div class="link-description">{{ link.description }}</div>
+            </div>
+          </div>
+        </el-card>
+      </div>
+    </el-card>
+    <!-- <el-card class="add-link-card">
+      <div class="add-link-header">添加友链</div>
+      <div class="add-link-content">
+        <p>请按照以下格式提交您的友链信息：</p>
+        <pre>
+avatar: "您的头像链接"
+title: "您的博客标题"
+description: "您的博客描述"</pre
+        >
+        <p>
+          并发送至：<a href="mailto:links@kisechan.space"
+            >links@kisechan.space</a
+          >
+        </p>
+      </div>
+    </el-card> -->
   </div>
 </template>
 
-<style scoped>
-</style>
+<script>
+import yaml from "js-yaml";
+import { ref } from "vue";
 
-<script setup>
+export default {
+  name: "FriendLinks",
+  setup() {
+    const friendLinks = ref([]);
+    const hoveredCardId = ref(null);
+
+    // 加载 YAML 文件
+    fetch("/links.yml")
+      .then((response) => response.text())
+      .then((text) => {
+        friendLinks.value = yaml.load(text);
+      })
+      .catch((error) => {
+        console.error("Failed to load YAML file:", error);
+      });
+
+    const hoverEffect = (cardId) => {
+      hoveredCardId.value = cardId;
+    };
+
+    const resetEffect = () => {
+      hoveredCardId.value = null;
+    };
+
+    const cardStyle = (cardId) => {
+      return {
+        transform: hoveredCardId.value === cardId ? "scale(1.05)" : "scale(1)",
+        transition: "transform 0.3s ease",
+      };
+    };
+
+    return {
+      friendLinks,
+      hoverEffect,
+      resetEffect,
+      cardStyle,
+    };
+  },
+};
 </script>
+
+<style scoped>
+.friend-links {
+  padding: 20px;
+}
+
+.add-link-card {
+  margin-bottom: 20px;
+}
+
+.add-link-header {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.add-link-content {
+  font-size: 1em;
+  color: #333;
+}
+
+.add-link-content pre {
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.add-link-content a {
+  color: #409eff;
+  text-decoration: none;
+}
+
+.add-link-content a:hover {
+  text-decoration: underline;
+}
+
+.category-card {
+  margin-bottom: 20px;
+}
+
+.category-header {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.links-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+}
+
+.link-card {
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.link-card:hover {
+  z-index: 2;
+}
+
+.link-content {
+  display: flex;
+  align-items: center;
+}
+
+.link-avatar {
+  margin-right: 15px;
+}
+
+.link-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.link-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.link-description {
+  font-size: 0.9em;
+  color: #666;
+}
+</style>
