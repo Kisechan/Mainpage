@@ -94,13 +94,14 @@ onMounted(() => {
   color: #303133;
   margin: 0 10px;
   font-size: 24px;
+  transition: color 0.3s ease;
 }
 
 .social-icons a:hover {
   color: rgb(159.5, 206.5, 255);
 }
 
-.social-icons{
+.social-icons {
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
