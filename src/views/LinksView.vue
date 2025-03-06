@@ -209,4 +209,8 @@ h1 {
   align-items: center;
   gap: 10px;
 }
+
+.link-content {
+  color: var(--text-color);
+}
 </style>

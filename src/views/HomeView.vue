@@ -226,7 +226,7 @@ onUnmounted(() => {
 }
 
 .social-icons a {
-  color: #303133;
+  color: var(--text-color);
   margin: 0 10px;
   font-size: 24px;
   transition: color 0.3s ease, transform 0.3s ease;
@@ -279,7 +279,7 @@ onUnmounted(() => {
 .blog-title {
   font-size: 1.2em;
   font-weight: bold;
-  color: #303133;
+  color: var(--text-color);
   text-decoration: none;
   margin-left: 10px;
 }
@@ -292,7 +292,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   font-size: 0.9em;
-  color: #606266;
+  color: var(--text-color);
 }
 
 .update-time,
@@ -300,11 +300,12 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   margin-right: 20px;
+  color: var(--text-color);
 }
 
 .icon {
   margin-right: 5px;
-  color: #909399;
+  color: var(--text-color);
 }
 
 .tag {
@@ -344,7 +345,7 @@ onUnmounted(() => {
 }
 
 .read-more-icon {
-  color: #409eff;
+  color: var(--text-color);
   transition: transform 0.3s ease;
 }
 

@@ -10,14 +10,29 @@
       <el-menu-item @click="openLink('/')">首页</el-menu-item>
       <el-menu-item @click="goToBlog">博客</el-menu-item>
       <el-menu-item @click="openLink('/links')">友链</el-menu-item>
+      <el-menu-item @click="toggleDarkMode">
+        <div class="flip-container">
+          <div :class="['flipper', isDarkMode ? 'flip' : '']">
+            <el-icon class="front">
+              <Sunny />
+            </el-icon>
+            <el-icon class="back">
+              <Moon />
+            </el-icon>
+          </div>
+        </div>
+      </el-menu-item>
     </div>
   </el-menu>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { Sunny, Moon } from '@element-plus/icons-vue';
 
 const router = useRouter();
+const isDarkMode = ref(false);
 
 // 打开外部链接
 const goToBlog = () => {
@@ -29,6 +44,23 @@ const openLink = (path) => {
   console.log("Navigating to:", path); // 调试信息
   router.push(path);
 };
+
+const toggleDarkMode = () => {
+  isDarkMode.value = !isDarkMode.value;
+  document.documentElement.classList.toggle('dark', isDarkMode.value);
+  localStorage.setItem('darkMode', isDarkMode.value);
+};
+
+// 初始化时读取 localStorage 中的模式选择
+const initializeDarkMode = () => {
+  const savedMode = localStorage.getItem('darkMode');
+  if (savedMode !== null) {
+    isDarkMode.value = savedMode === 'true';
+    document.documentElement.classList.toggle('dark', isDarkMode.value);
+  }
+};
+
+initializeDarkMode();
 </script>
 
 <style scoped>
@@ -55,5 +87,42 @@ const openLink = (path) => {
 
 .website-name {
   font-size: 1.5em;
+}
+
+.el-menu-item {
+  outline: none !important;
+  background-color: transparent !important;
+}
+
+.flip-container {
+  perspective: 1000px;
+}
+
+.flipper {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.front {
+  transform: rotateY(0deg);
+}
+
+.back {
+  transform: rotateY(180deg);
 }
 </style>

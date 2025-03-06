@@ -7,6 +7,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import './assets/styles/global.css'
 import '@fortawesome/fontawesome-free/css/all.css';
 import 'github-calendar/dist/github-calendar-responsive.css';
+import 'element-plus/theme-chalk/dark/css-vars.css' 
 
 const app = createApp(App)
 
