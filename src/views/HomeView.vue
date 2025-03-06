@@ -23,27 +23,18 @@
                 <el-col v-for="item in feedItems" :key="item.link" :span="24">
                   <el-card class="blog-card" shadow="hover">
                     <div class="blog-header">
-                      <font-awesome-icon
-                        :icon="['fas', 'file-lines']"
-                        class="icon"
-                      />
+                      <i class="fa-solid fa-newspaper"></i>
                       <a :href="item.link" target="_blank" class="blog-title">{{
                         item.title
                       }}</a>
                     </div>
                     <div class="blog-meta">
+                      <i class="fa-solid fa-clock-rotate-left"></i>
                       <span class="update-time">
-                        <font-awesome-icon
-                          :icon="['fas', 'clock']"
-                          class="icon"
-                        />
                         {{ formatDate(item.pubDate) }}
                       </span>
                       <span class="tags">
-                        <font-awesome-icon
-                          :icon="['fas', 'tags']"
-                          class="icon"
-                        />
+                        <i class="fa-solid fa-tags"></i>
                         <el-tag
                           v-for="(tag, index) in item.tags"
                           :key="index"
@@ -60,12 +51,22 @@
               </el-row>
             </div>
             <div class="read-more-container">
-              <el-card class="read-more-card" shadow="hover" @click="goToBlog">
-                <div class="read-more-content">
-                  <span>Read More</span>
-                  <i class="fa-brands fa-readme"></i>
-                </div>
-              </el-card>
+              <el-tooltip
+                content="前往博客查看更多文章"
+                placement="top"
+                class="read-more-tooltip"
+              >
+                <el-card
+                  class="read-more-card"
+                  shadow="hover"
+                  @click="goToBlog"
+                >
+                  <div class="read-more-content">
+                    <span>Read More</span>
+                    <i class="fa-brands fa-readme"></i>
+                  </div>
+                </el-card>
+              </el-tooltip>
             </div>
           </el-card>
         </el-col>
@@ -313,28 +314,32 @@ onUnmounted(() => {
 .read-more-container {
   display: flex;
   justify-content: flex-end; /* 靠右排版 */
-  margin-top: 10px; /* 调整上边距 */
 }
 
 .read-more-card {
+  display: flex; /* 使用 flexbox */
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
   cursor: pointer;
-  width: 150px; /* 调整宽度 */
-  padding: 10px; /* 调整内边距 */
+  width: 135px; /* 调整宽度 */
+  height: 35px; /* 调整高度 */
+  padding: 6px; /* 调整内边距 */
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.read-more-card:hover {
+.read-more-card:hover,
+.read-more-tooltip {
   transform: translateY(-5px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .read-more-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: 1em; /* 调整字体大小 */
+  display: flex; /* 使用 flexbox */
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  gap: 2px;
+  font-size: 0.85em; /* 调整字体大小 */
   color: #409eff;
 }
 
