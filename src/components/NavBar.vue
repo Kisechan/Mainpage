@@ -15,16 +15,19 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
 // 打开外部链接
 const goToBlog = () => {
   window.open("https://blog.kisechan.space", "_blank");
 };
 
-// 打开内部链接（新标签页）
+// 打开内部链接（当前页面）
 const openLink = (path) => {
-  const fullUrl = "https://www.kisechan.space" + path; // 获取完整 URL
-  if (window.location.href === fullUrl) return; // 防止重复点击
-  window.open(fullUrl, "_blank");
+  console.log("Navigating to:", path); // 调试信息
+  router.push(path);
 };
 </script>
 

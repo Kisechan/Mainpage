@@ -15,7 +15,6 @@
             <div class="github-calendar-container">
               <h3>My Github Contributions</h3>
               <div id="github-graph">
-                <p v-if="!isLoaded">Loading...</p>
               </div>
             </div>
             <hr />
@@ -116,54 +115,74 @@
 
 <script setup>
 import avatarUrl from "@/assets/avatar.png";
-import { onMounted } from "vue";
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 
 const isLoaded = ref(false);
 const feedItems = ref([]);
-// 懒加载
+const githubCalendarInstance = ref(null); // 提升到组件作用域
+
 const loadGitHubCalendar = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 100)); // 延迟 100ms
+  const calendarElement = document.getElementById("github-graph");
+  if (!calendarElement) {
+    console.error("Element #github-graph not found");
+    return;
+  }
+
   const GitHubCalendar = await import("github-calendar");
-  GitHubCalendar.default("#github-graph", "Kisechan", {
-    responsive: true, // 响应式设计
-    tooltips: true, // 显示提示信息
-    global_stats: false, // 显示全局统计信息
+  githubCalendarInstance.value = GitHubCalendar.default(calendarElement, "Kisechan", {
+    responsive: true,
+    tooltips: true,
+    global_stats: false,
   });
   isLoaded.value = true;
 };
 
-// 获取并解析 RSS Feed
+const cleanupGitHubCalendar = () => {
+  const calendarElement = document.getElementById("github-graph");
+  if (calendarElement) {
+    calendarElement.innerHTML = ""; // 清空日历内容
+  }
+  if (githubCalendarInstance.value) {
+    githubCalendarInstance.value = null; // 清理实例
+  }
+};
+
 const fetchRSSFeed = async () => {
-  const rssUrl = "https://blog.kisechan.space/atom.xml"; // 替换为你的 Atom Feed URL
+  const rssUrl = "https://blog.kisechan.space/atom.xml";
   try {
     const response = await fetch(rssUrl);
     const str = await response.text();
     const data = new window.DOMParser().parseFromString(str, "text/xml");
     const items = data.querySelectorAll("entry");
 
-    feedItems.value = Array.from(items).map(item => ({
-      title: item.querySelector("title").textContent,
-      link: item.querySelector("link").getAttribute("href"),
-      pubDate: item.querySelector("updated").textContent,
-      tags: Array.from(item.querySelectorAll("category")).map(
-        category => category.getAttribute("term")
-      ),
-    }));
+    feedItems.value = Array.from(items)
+      .map(item => ({
+        title: item.querySelector("title").textContent,
+        link: item.querySelector("link").getAttribute("href"),
+        pubDate: item.querySelector("updated").textContent,
+        tags: Array.from(item.querySelectorAll("category")).map(
+          category => category.getAttribute("term")
+        ),
+      }))
+      .slice(0, 6); // 只取前 6 篇文章
   } catch (error) {
     console.error("Error fetching RSS Feed:", error);
   }
 };
 
-// 格式化日期
 const formatDate = (dateString) => {
   const date = new Date(dateString);
   return date.toLocaleDateString();
 };
 
-// 在组件挂载后懒加载
 onMounted(() => {
   loadGitHubCalendar();
   fetchRSSFeed();
+});
+
+onUnmounted(() => {
+  cleanupGitHubCalendar();
 });
 </script>
 
