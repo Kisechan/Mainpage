@@ -1,5 +1,8 @@
 <template>
   <div class="friend-links">
+    <h1>
+      <i class="fa-solid fa-link"></i>友链
+    </h1>
     <!-- 加载状态 -->
     <div v-if="loading" class="loading-container">
       <el-skeleton :rows="10" animated />
@@ -199,5 +202,11 @@ export default {
 
 .loading-container {
   padding: 20px;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 </style>

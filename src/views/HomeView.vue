@@ -13,12 +13,12 @@
             </p>
             <hr />
             <div class="github-calendar-container">
-              <h3>My Github Contributions</h3>
+              <h3><i class="fa-solid fa-code-branch"></i>My Github Contributions</h3>
               <div id="github-graph"></div>
             </div>
             <hr />
             <div class="rss-feed-container">
-              <h3>Latest Blog Posts</h3>
+              <h3><i class="fa-solid fa-box-archive"></i>Latest Blog Posts</h3>
               <el-row :gutter="20">
                 <el-col v-for="item in feedItems" :key="item.link" :span="24">
                   <el-card class="blog-card" shadow="hover">
@@ -350,5 +350,11 @@ onUnmounted(() => {
 
 .read-more-card:hover .read-more-icon {
   transform: translateX(5px);
+}
+
+h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 </style>
