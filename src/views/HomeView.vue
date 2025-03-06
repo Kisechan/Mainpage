@@ -12,11 +12,54 @@
               <a href="mailto:admin@kisechan.space">admin@kisechan.space</a>
             </p>
             <hr />
-            <h3>My Github Contributions</h3>
             <div class="github-calendar-container">
+              <h3>My Github Contributions</h3>
               <div id="github-graph">
                 <p v-if="!isLoaded">Loading...</p>
               </div>
+            </div>
+            <hr />
+            <div class="rss-feed-container">
+              <h3>Latest Blog Posts</h3>
+              <el-row :gutter="20">
+                <el-col v-for="item in feedItems" :key="item.link" :span="24">
+                  <el-card class="blog-card" shadow="hover">
+                    <div class="blog-header">
+                      <font-awesome-icon
+                        :icon="['fas', 'file-lines']"
+                        class="icon"
+                      />
+                      <a :href="item.link" target="_blank" class="blog-title">{{
+                        item.title
+                      }}</a>
+                    </div>
+                    <div class="blog-meta">
+                      <span class="update-time">
+                        <font-awesome-icon
+                          :icon="['fas', 'clock']"
+                          class="icon"
+                        />
+                        {{ formatDate(item.pubDate) }}
+                      </span>
+                      <span class="tags">
+                        <font-awesome-icon
+                          :icon="['fas', 'tags']"
+                          class="icon"
+                        />
+                        <el-tag
+                          v-for="(tag, index) in item.tags"
+                          :key="index"
+                          size="small"
+                          type="info"
+                          class="tag"
+                        >
+                          {{ tag }}
+                        </el-tag>
+                      </span>
+                    </div>
+                  </el-card>
+                </el-col>
+              </el-row>
             </div>
           </el-card>
         </el-col>
@@ -77,6 +120,7 @@ import { onMounted } from "vue";
 import { ref } from "vue";
 
 const isLoaded = ref(false);
+const feedItems = ref([]);
 // 懒加载
 const loadGitHubCalendar = async () => {
   const GitHubCalendar = await import("github-calendar");
@@ -88,9 +132,38 @@ const loadGitHubCalendar = async () => {
   isLoaded.value = true;
 };
 
-// 在组件挂载后懒加载 GitHub 贡献图
+// 获取并解析 RSS Feed
+const fetchRSSFeed = async () => {
+  const rssUrl = "https://blog.kisechan.space/atom.xml"; // 替换为你的 Atom Feed URL
+  try {
+    const response = await fetch(rssUrl);
+    const str = await response.text();
+    const data = new window.DOMParser().parseFromString(str, "text/xml");
+    const items = data.querySelectorAll("entry");
+
+    feedItems.value = Array.from(items).map(item => ({
+      title: item.querySelector("title").textContent,
+      link: item.querySelector("link").getAttribute("href"),
+      pubDate: item.querySelector("updated").textContent,
+      tags: Array.from(item.querySelectorAll("category")).map(
+        category => category.getAttribute("term")
+      ),
+    }));
+  } catch (error) {
+    console.error("Error fetching RSS Feed:", error);
+  }
+};
+
+// 格式化日期
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString();
+};
+
+// 在组件挂载后懒加载
 onMounted(() => {
   loadGitHubCalendar();
+  fetchRSSFeed();
 });
 </script>
 
@@ -138,11 +211,68 @@ onMounted(() => {
 .right-column {
   display: flex;
   flex-direction: column;
-  gap: 24px; /* 设置 author-info 和 social-icons 之间的间隔 */
+  gap: 24px;
 }
 
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.rss-feed-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.blog-card {
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.blog-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.blog-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #303133;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.blog-title:hover {
+  color: #409eff;
+}
+
+.blog-meta {
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+  color: #606266;
+}
+
+.update-time,
+.tags {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.icon {
+  margin-right: 5px;
+  color: #909399;
+}
+
+.tag {
+  margin-left: 5px;
 }
 </style>
