@@ -14,8 +14,7 @@
             <hr />
             <div class="github-calendar-container">
               <h3>My Github Contributions</h3>
-              <div id="github-graph">
-              </div>
+              <div id="github-graph"></div>
             </div>
             <hr />
             <div class="rss-feed-container">
@@ -59,6 +58,14 @@
                   </el-card>
                 </el-col>
               </el-row>
+            </div>
+            <div class="read-more-container">
+              <el-card class="read-more-card" shadow="hover" @click="goToBlog">
+                <div class="read-more-content">
+                  <span>Read More</span>
+                  <i class="fa-brands fa-readme"></i>
+                </div>
+              </el-card>
             </div>
           </el-card>
         </el-col>
@@ -130,11 +137,15 @@ const loadGitHubCalendar = async () => {
   }
 
   const GitHubCalendar = await import("github-calendar");
-  githubCalendarInstance.value = GitHubCalendar.default(calendarElement, "Kisechan", {
-    responsive: true,
-    tooltips: true,
-    global_stats: false,
-  });
+  githubCalendarInstance.value = GitHubCalendar.default(
+    calendarElement,
+    "Kisechan",
+    {
+      responsive: true,
+      tooltips: true,
+      global_stats: false,
+    }
+  );
   isLoaded.value = true;
 };
 
@@ -157,12 +168,12 @@ const fetchRSSFeed = async () => {
     const items = data.querySelectorAll("entry");
 
     feedItems.value = Array.from(items)
-      .map(item => ({
+      .map((item) => ({
         title: item.querySelector("title").textContent,
         link: item.querySelector("link").getAttribute("href"),
         pubDate: item.querySelector("updated").textContent,
-        tags: Array.from(item.querySelectorAll("category")).map(
-          category => category.getAttribute("term")
+        tags: Array.from(item.querySelectorAll("category")).map((category) =>
+          category.getAttribute("term")
         ),
       }))
       .slice(0, 6); // 只取前 6 篇文章
@@ -174,6 +185,10 @@ const fetchRSSFeed = async () => {
 const formatDate = (dateString) => {
   const date = new Date(dateString);
   return date.toLocaleDateString();
+};
+
+const goToBlog = () => {
+  window.open("https://blog.kisechan.space", "_blank");
 };
 
 onMounted(() => {
@@ -293,5 +308,42 @@ onUnmounted(() => {
 
 .tag {
   margin-left: 5px;
+}
+
+.read-more-container {
+  display: flex;
+  justify-content: flex-end; /* 靠右排版 */
+  margin-top: 10px; /* 调整上边距 */
+}
+
+.read-more-card {
+  cursor: pointer;
+  width: 150px; /* 调整宽度 */
+  padding: 10px; /* 调整内边距 */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.read-more-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.read-more-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1em; /* 调整字体大小 */
+  color: #409eff;
+}
+
+.read-more-icon {
+  color: #409eff;
+  transition: transform 0.3s ease;
+}
+
+.read-more-card:hover .read-more-icon {
+  transform: translateX(5px);
 }
 </style>
