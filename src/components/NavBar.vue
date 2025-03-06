@@ -7,9 +7,18 @@
 
     <!-- 右侧导航选项 -->
     <div class="menu-items">
-      <el-menu-item @click="openLink('/')">首页</el-menu-item>
-      <el-menu-item @click="goToBlog">博客</el-menu-item>
-      <el-menu-item @click="openLink('/links')">友链</el-menu-item>
+      <el-menu-item @click="openLink('/')">
+        <i class="fa-solid fa-house"></i>
+        首页
+      </el-menu-item>
+      <el-menu-item @click="goToBlog">
+        <i class="fa-solid fa-blog"></i>
+        博客
+      </el-menu-item>
+      <el-menu-item @click="openLink('/links')">
+        <i class="fa-solid fa-link"></i>
+        友链
+      </el-menu-item>
       <el-menu-item @click="toggleDarkMode">
         <div class="flip-container">
           <div :class="['flipper', isDarkMode ? 'flip' : '']">
@@ -27,9 +36,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { Sunny, Moon } from '@element-plus/icons-vue';
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { Sunny, Moon } from "@element-plus/icons-vue";
 
 const router = useRouter();
 const isDarkMode = ref(false);
@@ -47,16 +56,16 @@ const openLink = (path) => {
 
 const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value;
-  document.documentElement.classList.toggle('dark', isDarkMode.value);
-  localStorage.setItem('darkMode', isDarkMode.value);
+  document.documentElement.classList.toggle("dark", isDarkMode.value);
+  localStorage.setItem("darkMode", isDarkMode.value);
 };
 
 // 初始化时读取 localStorage 中的模式选择
 const initializeDarkMode = () => {
-  const savedMode = localStorage.getItem('darkMode');
+  const savedMode = localStorage.getItem("darkMode");
   if (savedMode !== null) {
-    isDarkMode.value = savedMode === 'true';
-    document.documentElement.classList.toggle('dark', isDarkMode.value);
+    isDarkMode.value = savedMode === "true";
+    document.documentElement.classList.toggle("dark", isDarkMode.value);
   }
 };
 
@@ -82,6 +91,7 @@ initializeDarkMode();
 
 .el-menu-item {
   font-size: 16px;
+  gap: 7.5px;
   cursor: pointer; /* 添加手型光标 */
 }
 
