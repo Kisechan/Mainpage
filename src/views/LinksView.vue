@@ -42,12 +42,12 @@
       <div class="add-link-header">添加友链</div>
       <div class="add-link-content">
         <p>请按照以下格式提交您的友链信息：</p>
-        <pre>
+        <i><pre>
 avatar: "您的头像链接"
 title: "您的博客标题"
 description: "您的博客描述"
 url: "您的博客链接"</pre
-        >
+        ></i>
         <p>
           并发送至：<a href="mailto:links@kisechan.space"
             >links@kisechan.space</a
@@ -131,15 +131,18 @@ export default {
 
 .add-link-content {
   font-size: 1em;
-  color: var(--text-color);
+  background-color: var(--code-background-color);
+  color: var(--code-text-color);
 }
 
 .add-link-content pre {
-  background-color: var(--code-background-color);
-  color: var(--code-text-color);
-  padding: 10px;
   border-radius: 4px;
   overflow-x: auto;
+  font-family: Consolas, Monaco, "Courier New", monospace; /* 使用等宽字体 */
+  font-size: 0.9em; /* 调整字体大小 */
+  line-height: 1.5; /* 调整行高 */
+  color: #698db1;
+  padding: 10px; /* 可选：增加内边距 */
 }
 
 .add-link-content a {
