@@ -13,6 +13,12 @@ const routes = [
     component: () => import("@/views/LinksView.vue"),
     meta: { title: "友链" },
   },
+  {
+    path: "/tools",
+    name: "tools",
+    component: () => import("@/views/ToolsView.vue"),
+    meta: { title: "工具" },
+  },
 ];
 
 const router = createRouter({

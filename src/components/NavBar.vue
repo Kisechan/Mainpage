@@ -19,6 +19,10 @@
         <i class="fa-solid fa-link"></i>
         友链
       </el-menu-item>
+      <el-menu-item @click="openLink('/tools')">
+        <i class="fa-solid fa-toolbox"></i>
+        工具
+      </el-menu-item>
       <el-menu-item @click="toggleDarkMode">
         <div class="flip-container">
           <div :class="['flipper', isDarkMode ? 'flip' : '']">

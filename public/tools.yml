@@ -1,0 +1,10 @@
+- category: "自部署小工具"
+  tools:
+    - icon: "https://excalidraw.com/favicon.ico"
+      title: "Excalidraw 画板"
+      description: "简单的在线绘图工具"
+      url: "https://draw.kisechan.space/"
+    - icon: "https://calc.kisechan.space/icon.svg"
+      title: "Calcium 计算器"
+      description: "在线计算器"
+      url: "https://calc.kisechan.space/"
