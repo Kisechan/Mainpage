@@ -1,7 +1,7 @@
 <template>
     <div class="tools-container">
       <h1>
-        <i class="fa-solid fa-toolbox"></i>工具
+        <i class="fa-solid fa-screwdriver-wrench"></i>工具
       </h1>
       <!-- 加载状态 -->
       <div v-if="loading" class="loading-container">
