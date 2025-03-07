@@ -290,6 +290,7 @@ onUnmounted(() => {
 
 .blog-meta {
   display: flex;
+  gap: 8px;
   align-items: center;
   font-size: 0.9em;
   color: var(--text-color);
@@ -310,6 +311,7 @@ onUnmounted(() => {
 
 .tag {
   margin-left: 5px;
+  color: var(--code-text-color);
 }
 
 .read-more-container {

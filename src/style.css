@@ -9,6 +9,8 @@
 
   --background-color: #242424;
   --text-color: #3d3d3d;
+  --code-background-color: #f5f5f5;
+  --code-text-color: #333;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -29,6 +31,8 @@ a:hover {
 .dark {
   --background-color: #242424;
   --text-color: rgb(228, 228, 228);
+  --code-background-color: #2d2d2d;
+  --code-text-color: #cccccc;
 }
 
 body {

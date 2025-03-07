@@ -131,11 +131,12 @@ export default {
 
 .add-link-content {
   font-size: 1em;
-  color: #333;
+  color: var(--text-color);
 }
 
 .add-link-content pre {
-  background-color: #f5f5f5;
+  background-color: var(--code-background-color);
+  color: var(--code-text-color);
   padding: 10px;
   border-radius: 4px;
   overflow-x: auto;
@@ -197,7 +198,7 @@ export default {
 
 .link-description {
   font-size: 0.9em;
-  color: #666;
+  color: var(--code-text-color);
 }
 
 .loading-container {

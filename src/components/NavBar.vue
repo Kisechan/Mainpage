@@ -91,7 +91,7 @@ initializeDarkMode();
 
 .el-menu-item {
   font-size: 16px;
-  gap: 7.5px;
+  gap: 6px;
   cursor: pointer; /* 添加手型光标 */
 }
 
