@@ -38,7 +38,7 @@
             </el-card>
           </div>
         </el-card>
-        <!-- <el-card class="add-link-card">
+        <el-card class="add-link-card">
       <div class="add-link-header">添加友链</div>
       <div class="add-link-content">
         <p>请按照以下格式提交您的友链信息：</p>
@@ -54,7 +54,7 @@ url: "您的博客链接"</pre
           >
         </p>
       </div>
-    </el-card> -->
+    </el-card>
       </div>
     </template>
   </div>
