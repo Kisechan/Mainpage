@@ -49,7 +49,7 @@ const isDarkMode = ref(false);
 
 // 打开外部链接
 const goToBlog = () => {
-  window.open("https://blog.kisechan.space", "_blank");
+  window.open("https://blog.kisechan.space", "_self");
 };
 
 // 打开内部链接（当前页面）
