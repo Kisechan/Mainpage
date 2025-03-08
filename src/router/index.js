@@ -19,6 +19,16 @@ const routes = [
     component: () => import("@/views/ToolsView.vue"),
     meta: { title: "工具" },
   },
+  {
+    path: "/404",
+    name: "404",
+    component: () => import("@/views/404.vue"),
+    meta: { title: "寄了" },
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    redirect: "/404",
+  },
 ];
 
 const router = createRouter({
