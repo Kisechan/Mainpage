@@ -161,7 +161,8 @@ const cleanupGitHubCalendar = () => {
 };
 
 const fetchRSSFeed = async () => {
-  const rssUrl = "https://blog.kisechan.space/atom.xml";
+  const rssUrl = import.meta.env.VITE_RSS_FEED_URL;
+  console.log("Fetching RSS Feed:", rssUrl);
   try {
     const response = await fetch(rssUrl);
     const str = await response.text();

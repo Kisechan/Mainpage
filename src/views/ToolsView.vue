@@ -43,7 +43,7 @@
       const loading = ref(true);
   
       // 加载 YAML 文件
-      fetch("/tools.yml")
+      fetch(import.meta.env.VITE_TOOLS_YAML_URL)
         .then((response) => response.text())
         .then((text) => {
           tools.value = yaml.load(text);
@@ -52,7 +52,7 @@
           console.error("Failed to load YAML file:", error);
         })
         .finally(() => {
-          loading.value = false; // 数据加载完成后，设置 loading 为 false
+          loading.value = false;
         });
   
       const openLink = (url) => {

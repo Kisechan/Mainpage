@@ -42,12 +42,10 @@
       <div class="add-link-header">添加友链</div>
       <div class="add-link-content">
         <p>请按照以下格式提交您的友链信息：</p>
-        <i><pre>
-avatar: "您的头像链接"
+        <i><pre>avatar: "您的头像链接"
 title: "您的博客标题"
 description: "您的博客描述"
-url: "您的博客链接"</pre
-        ></i>
+url: "您的博客链接"</pre></i>
         <p>
           并发送至：<a href="mailto:links@kisechan.space"
             >links@kisechan.space</a
@@ -71,7 +69,7 @@ export default {
     const hoveredCardId = ref(null);
     const loading = ref(true);
     // 加载 YAML 文件
-    fetch("/links.yml")
+    fetch(import.meta.env.VITE_LINKS_YAML_URL)
       .then((response) => response.text())
       .then((text) => {
         friendLinks.value = yaml.load(text);
