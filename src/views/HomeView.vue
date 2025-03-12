@@ -24,7 +24,7 @@
                   <el-card class="blog-card" shadow="hover">
                     <div class="blog-header">
                       <i class="fa-solid fa-newspaper"></i>
-                      <a :href="item.link" target="_blank" class="blog-title">{{
+                      <a :href="item.link" target="_self" class="blog-title">{{
                         item.title
                       }}</a>
                     </div>
@@ -79,25 +79,25 @@
             <i>"Non est ad astra mollis e trris via."</i>
           </div>
           <div class="social-icons">
-            <a href="https://github.com/Kisechan" target="_blank">
+            <a href="https://github.com/Kisechan" target="_self">
               <i class="fab fa-github"></i>
             </a>
-            <a href="https://www.zhihu.com/people/ptkise" target="_blank">
+            <a href="https://www.zhihu.com/people/ptkise" target="_self">
               <i class="fab fa-zhihu"></i>
             </a>
-            <a href="https://space.bilibili.com/174541536" target="_blank">
+            <a href="https://space.bilibili.com/174541536" target="_self">
               <i class="fab fa-bilibili"></i>
             </a>
-            <a href="https://blog.kisechan.space" target="_blank">
+            <a href="https://blog.kisechan.space" target="_self">
               <i class="fa-solid fa-blog"></i>
             </a>
-            <a href="mailto:admin@kisechan.space" target="_blank">
+            <a href="mailto:admin@kisechan.space" target="_self">
               <i class="fa-solid fa-envelope"></i>
             </a>
           </div>
           <div class="footer-content">
             <p>
-              <a href="https://icp.gov.moe/?keyword=20251453" target="_blank"
+              <a href="https://icp.gov.moe/?keyword=20251453" target="_self"
                 >萌ICP备20251453号</a
               >
             </p>
@@ -105,7 +105,7 @@
               &copy; 2025 By
               <a
                 href="https://github.com/Kisechan"
-                target="_blank"
+                target="_self"
                 rel="nofollow noopener"
                 ><strong>Kisechan</strong></a
               >
@@ -190,7 +190,7 @@ const formatDate = (dateString) => {
 };
 
 const goToBlog = () => {
-  window.open("https://blog.kisechan.space", "_blank");
+  window.open("https://blog.kisechan.space", "_self");
 };
 
 onMounted(() => {

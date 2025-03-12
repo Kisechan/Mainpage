@@ -7,7 +7,7 @@
           &copy; 2025 By
           <a
             href="https://github.com/Kisechan"
-            target="_blank"
+            target="_self"
             rel="nofollow noopener"
             ><strong>Kisechan</strong></a
           >
