@@ -8,3 +8,7 @@
       title: "Calcium 计算器"
       description: "在线计算器"
       url: "https://calc.kisechan.space/"
+    - icon: "https://uptimerobot.com/favicon.ico"
+      title: "UptimeRobot 状态监控"
+      description: "网站状态监控"
+      url: "https://status.kisechan.space/"
