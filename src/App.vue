@@ -1,9 +1,22 @@
 <script setup>
 import NavBar from "./components/NavBar.vue";
 import AppFooter from "./components/AppFooter.vue";
+import { useRouter } from 'vue-router'
+import { watch } from 'vue'
+import { useHead } from '@unhead/vue'
+
 const openGitHubRepo = () => {
   window.open("https://github.com/Kisechan/Mainpage", "_self");
 };
+
+const router = useRouter()
+
+watch(() => router.currentRoute.value, (route) => {
+  useHead({
+    title: route.meta.title,
+    meta: route.meta.metaTags || [],
+  })
+})
 </script>
 
 <template>

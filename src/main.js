@@ -8,14 +8,17 @@ import './assets/styles/global.css'
 import '@fortawesome/fontawesome-free/css/all.css';
 import 'github-calendar/dist/github-calendar-responsive.css';
 import 'element-plus/theme-chalk/dark/css-vars.css' 
+import { createHead } from '@unhead/vue'
 
 const app = createApp(App)
+const head = createHead()
 
 // 注册所有图标
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
 
+app.use(head)
 app.use(router)
 app.use(ElementPlus)
 app.mount('#app')

@@ -5,19 +5,44 @@ const routes = [
     path: "/",
     name: "home",
     component: () => import("@/views/HomeView.vue"),
-    meta: { hideFooter: true, title: "主页" },
+    meta: {
+      hideFooter: true,
+      title: "主页",
+      metaTags: [
+        {
+          name: "description",
+          content: "Kisechan的个人主页。",
+        },
+      ],
+    },
   },
   {
     path: "/links",
     name: "links",
     component: () => import("@/views/LinksView.vue"),
-    meta: { title: "友链" },
+    meta: {
+      title: "友链",
+      metaTags: [
+        {
+          name: "description",
+          content: "Kisechan的个人主页 - 友链部分。",
+        },
+      ],
+    },
   },
   {
     path: "/tools",
     name: "tools",
     component: () => import("@/views/ToolsView.vue"),
-    meta: { title: "工具" },
+    meta: {
+      title: "工具",
+      metaTags: [
+        {
+          name: "description",
+          content: "Kisechan的个人主页 - 工具部分。",
+        },
+      ],
+    },
   },
   {
     path: "/404",
