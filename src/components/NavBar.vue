@@ -7,35 +7,77 @@
 
     <!-- 右侧导航选项 -->
     <div class="menu-items">
-      <el-menu-item @click="openLink('/')">
-        <i class="fa-solid fa-house"></i>
-        首页
+      <!-- 手机端汉堡菜单 -->
+      <el-menu-item class="mobile-menu-icon" @click="toggleMobileMenu">
+        <i class="fa-solid fa-bars"></i>
       </el-menu-item>
-      <el-menu-item @click="goToBlog">
-        <i class="fa-solid fa-blog"></i>
-        博客
-      </el-menu-item>
-      <el-menu-item @click="openLink('/links')">
-        <i class="fa-solid fa-link"></i>
-        友链
-      </el-menu-item>
-      <el-menu-item @click="openLink('/tools')">
-        <i class="fa-solid fa-screwdriver-wrench"></i>
-        工具
-      </el-menu-item>
-      <el-menu-item @click="toggleDarkMode">
-        <div class="flip-container">
-          <div :class="['flipper', isDarkMode ? 'flip' : '']">
-            <el-icon class="front">
-              <Sunny />
-            </el-icon>
-            <el-icon class="back">
-              <Moon />
-            </el-icon>
+
+      <!-- 桌面端导航项 -->
+      <div class="desktop-menu">
+        <el-menu-item @click="openLink('/')">
+          <i class="fa-solid fa-house"></i>
+          首页
+        </el-menu-item>
+        <el-menu-item @click="goToBlog">
+          <i class="fa-solid fa-blog"></i>
+          博客
+        </el-menu-item>
+        <el-menu-item @click="openLink('/links')">
+          <i class="fa-solid fa-link"></i>
+          友链
+        </el-menu-item>
+        <el-menu-item @click="openLink('/tools')">
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+          工具
+        </el-menu-item>
+        <el-menu-item @click="toggleDarkMode">
+          <div class="flip-container">
+            <div :class="['flipper', isDarkMode ? 'flip' : '']">
+              <el-icon class="front">
+                <Sunny />
+              </el-icon>
+              <el-icon class="back">
+                <Moon />
+              </el-icon>
+            </div>
           </div>
-        </div>
-      </el-menu-item>
+        </el-menu-item>
+      </div>
     </div>
+
+    <!-- 手机端抽屉菜单 -->
+    <el-drawer v-model="isMobileMenuOpen" direction="ltr" size="80%">
+      <el-menu>
+        <el-menu-item @click="openLink('/')">
+          <i class="fa-solid fa-house"></i>
+          首页
+        </el-menu-item>
+        <el-menu-item @click="goToBlog">
+          <i class="fa-solid fa-blog"></i>
+          博客
+        </el-menu-item>
+        <el-menu-item @click="openLink('/links')">
+          <i class="fa-solid fa-link"></i>
+          友链
+        </el-menu-item>
+        <el-menu-item @click="openLink('/tools')">
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+          工具
+        </el-menu-item>
+        <el-menu-item @click="toggleDarkMode">
+          <div class="flip-container">
+            <div :class="['flipper', isDarkMode ? 'flip' : '']">
+              <el-icon class="front">
+                <Sunny />
+              </el-icon>
+              <el-icon class="back">
+                <Moon />
+              </el-icon>
+            </div>
+          </div>
+        </el-menu-item>
+      </el-menu>
+    </el-drawer>
   </el-menu>
 </template>
 
@@ -46,6 +88,7 @@ import { Sunny, Moon } from "@element-plus/icons-vue";
 
 const router = useRouter();
 const isDarkMode = ref(false);
+const isMobileMenuOpen = ref(false);
 
 // 打开外部链接
 const goToBlog = () => {
@@ -54,14 +97,20 @@ const goToBlog = () => {
 
 // 打开内部链接（当前页面）
 const openLink = (path) => {
-  console.log("Navigating to:", path); // 调试信息
   router.push(path);
+  isMobileMenuOpen.value = false; // 关闭手机端菜单
 };
 
+// 切换暗黑模式
 const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value;
   document.documentElement.classList.toggle("dark", isDarkMode.value);
   localStorage.setItem("darkMode", isDarkMode.value);
+};
+
+// 切换手机端菜单
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
 
 // 初始化时读取 localStorage 中的模式选择
@@ -86,17 +135,7 @@ initializeDarkMode();
 
 .menu-items {
   display: flex;
-  justify-content: center;
-}
-
-.el-menu--horizontal > .el-menu-item:nth-child(1) {
-  margin-right: auto;
-}
-
-.el-menu-item {
-  font-size: 16px;
-  gap: 6px;
-  cursor: pointer; /* 添加手型光标 */
+  align-items: center;
 }
 
 .website-name {
@@ -104,8 +143,17 @@ initializeDarkMode();
 }
 
 .el-menu-item {
-  outline: none !important;
-  background-color: transparent !important;
+  font-size: 16px;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.mobile-menu-icon {
+  display: none; /* 默认隐藏手机端菜单图标 */
+}
+
+.desktop-menu {
+  display: flex;
 }
 
 .flip-container {
@@ -138,5 +186,16 @@ initializeDarkMode();
 
 .back {
   transform: rotateY(180deg);
+}
+
+/* 手机端样式 */
+@media (max-width: 768px) {
+  .mobile-menu-icon {
+    display: block; /* 显示手机端菜单图标 */
+  }
+
+  .desktop-menu {
+    display: none; /* 隐藏桌面端导航项 */
+  }
 }
 </style>

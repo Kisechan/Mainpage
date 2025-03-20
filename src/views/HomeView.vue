@@ -3,7 +3,7 @@
     <el-main>
       <el-row :gutter="20">
         <!-- 左侧正文 -->
-        <el-col :span="16">
+        <el-col :xs="24" :sm="24" :md="16" :lg="16" :xl="16">
           <el-card>
             <p>某校 SE 专业学生，前 CChOer 。</p>
             <p>什么都会一点。</p>
@@ -20,13 +20,11 @@
             <div class="rss-feed-container">
               <h3><i class="fa-solid fa-box-archive"></i>Latest Blog Posts</h3>
               <el-row :gutter="20">
-                <el-col v-for="item in feedItems" :key="item.link" :span="24">
+                <el-col v-for="item in feedItems" :key="item.link" :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                   <el-card class="blog-card" shadow="hover">
                     <div class="blog-header">
                       <i class="fa-solid fa-newspaper"></i>
-                      <a :href="item.link" target="_self" class="blog-title">{{
-                        item.title
-                      }}</a>
+                      <a :href="item.link" target="_self" class="blog-title">{{ item.title }}</a>
                     </div>
                     <div class="blog-meta">
                       <i class="fa-solid fa-clock-rotate-left"></i>
@@ -51,16 +49,8 @@
               </el-row>
             </div>
             <div class="read-more-container">
-              <el-tooltip
-                content="前往博客查看更多文章"
-                placement="top"
-                class="read-more-tooltip"
-              >
-                <el-card
-                  class="read-more-card"
-                  shadow="hover"
-                  @click="goToBlog"
-                >
+              <el-tooltip content="前往博客查看更多文章" placement="top" class="read-more-tooltip">
+                <el-card class="read-more-card" shadow="hover" @click="goToBlog">
                   <div class="read-more-content">
                     <span>Read More</span>
                     <i class="fa-brands fa-readme"></i>
@@ -72,7 +62,7 @@
         </el-col>
 
         <!-- 右侧作者信息 -->
-        <el-col class="right-column" :span="8">
+        <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" class="right-column">
           <div class="author-info">
             <el-avatar :size="120" :src="avatarUrl" />
             <h2>Hello</h2>
@@ -97,22 +87,14 @@
           </div>
           <div class="footer-content">
             <p>
-              <a href="https://icp.gov.moe/?keyword=20251453" target="_self"
-                >萌ICP备20251453号</a
-              >
+              <a href="https://icp.gov.moe/?keyword=20251453" target="_self">萌ICP备20251453号</a>
             </p>
             <p>
               &copy; 2025 By
-              <a
-                href="https://github.com/Kisechan"
-                target="_self"
-                rel="nofollow noopener"
-                ><strong>Kisechan</strong></a
-              >
+              <a href="https://github.com/Kisechan" target="_self" rel="nofollow noopener"><strong>Kisechan</strong></a>
             </p>
             <p style="font-size: 0.75em">
-              Made With <a href="https://cn.vuejs.org/">Vue3</a> &
-              <a href="https://element-plus.org/zh-CN/">Element Plus</a>
+              Made With <a href="https://cn.vuejs.org/">Vue3</a> & <a href="https://element-plus.org/zh-CN/">Element Plus</a>
             </p>
           </div>
         </el-col>
@@ -127,10 +109,10 @@ import { ref, onMounted, onUnmounted } from "vue";
 
 const isLoaded = ref(false);
 const feedItems = ref([]);
-const githubCalendarInstance = ref(null); // 提升到组件作用域
+const githubCalendarInstance = ref(null);
 
 const loadGitHubCalendar = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 100)); // 延迟 100ms
+  await new Promise((resolve) => setTimeout(resolve, 100));
   const calendarElement = document.getElementById("github-graph");
   if (!calendarElement) {
     console.error("Element #github-graph not found");
@@ -138,25 +120,21 @@ const loadGitHubCalendar = async () => {
   }
 
   const GitHubCalendar = await import("github-calendar");
-  githubCalendarInstance.value = GitHubCalendar.default(
-    calendarElement,
-    "Kisechan",
-    {
-      responsive: true,
-      tooltips: true,
-      global_stats: false,
-    }
-  );
+  githubCalendarInstance.value = GitHubCalendar.default(calendarElement, "Kisechan", {
+    responsive: true,
+    tooltips: true,
+    global_stats: false,
+  });
   isLoaded.value = true;
 };
 
 const cleanupGitHubCalendar = () => {
   const calendarElement = document.getElementById("github-graph");
   if (calendarElement) {
-    calendarElement.innerHTML = ""; // 清空日历内容
+    calendarElement.innerHTML = "";
   }
   if (githubCalendarInstance.value) {
-    githubCalendarInstance.value = null; // 清理实例
+    githubCalendarInstance.value = null;
   }
 };
 
@@ -178,7 +156,7 @@ const fetchRSSFeed = async () => {
           category.getAttribute("term")
         ),
       }))
-      .slice(0, 6); // 只取前 6 篇文章
+      .slice(0, 6);
   } catch (error) {
     console.error("Error fetching RSS Feed:", error);
   }
@@ -317,17 +295,17 @@ onUnmounted(() => {
 
 .read-more-container {
   display: flex;
-  justify-content: flex-end; /* 靠右排版 */
+  justify-content: flex-end;
 }
 
 .read-more-card {
-  display: flex; /* 使用 flexbox */
-  align-items: center; /* 垂直居中 */
-  justify-content: center; /* 水平居中 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  width: 135px; /* 调整宽度 */
-  height: 35px; /* 调整高度 */
-  padding: 6px; /* 调整内边距 */
+  width: 135px;
+  height: 35px;
+  padding: 6px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -339,11 +317,11 @@ onUnmounted(() => {
 }
 
 .read-more-content {
-  display: flex; /* 使用 flexbox */
-  align-items: center; /* 垂直居中 */
-  justify-content: center; /* 水平居中 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 2px;
-  font-size: 0.85em; /* 调整字体大小 */
+  font-size: 0.85em;
   color: #409eff;
 }
 
@@ -360,5 +338,25 @@ h3 {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+/* 手机端样式 */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 10px;
+  }
+
+  .github-calendar-container,
+  .rss-feed-container {
+    margin: 10px;
+  }
+
+  .blog-card {
+    margin-bottom: 10px;
+  }
+
+  .read-more-container {
+    justify-content: center;
+  }
 }
 </style>
