@@ -2,7 +2,42 @@
   <div class="home-container">
     <el-main>
       <el-row :gutter="20">
-        <!-- 左侧正文 -->
+        <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" class="right-column">
+          <div class="author-info">
+            <el-avatar :size="120" :src="avatarUrl" />
+            <h2>Hello</h2>
+            <i>"Non est ad astra mollis e trris via."</i>
+          </div>
+          <div class="social-icons">
+            <a href="https://github.com/Kisechan" target="_self">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.zhihu.com/people/ptkise" target="_self">
+              <i class="fab fa-zhihu"></i>
+            </a>
+            <a href="https://space.bilibili.com/174541536" target="_self">
+              <i class="fab fa-bilibili"></i>
+            </a>
+            <a href="https://blog.kisechan.space" target="_self">
+              <i class="fa-solid fa-blog"></i>
+            </a>
+            <a href="mailto:admin@kisechan.space" target="_self">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
+          <div class="footer-content">
+            <p>
+              <a href="https://icp.gov.moe/?keyword=20251453" target="_self">萌ICP备20251453号</a>
+            </p>
+            <p>
+              &copy; 2025 By
+              <a href="https://github.com/Kisechan" target="_self" rel="nofollow noopener"><strong>Kisechan</strong></a>
+            </p>
+            <p style="font-size: 0.75em">
+              Made With <a href="https://cn.vuejs.org/">Vue3</a> & <a href="https://element-plus.org/zh-CN/">Element Plus</a>
+            </p>
+          </div>
+        </el-col>
         <el-col :xs="24" :sm="24" :md="16" :lg="16" :xl="16">
           <el-card>
             <p>某校 SE 专业学生，前 CChOer 。</p>
@@ -59,44 +94,6 @@
               </el-tooltip>
             </div>
           </el-card>
-        </el-col>
-
-        <!-- 右侧作者信息 -->
-        <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" class="right-column">
-          <div class="author-info">
-            <el-avatar :size="120" :src="avatarUrl" />
-            <h2>Hello</h2>
-            <i>"Non est ad astra mollis e trris via."</i>
-          </div>
-          <div class="social-icons">
-            <a href="https://github.com/Kisechan" target="_self">
-              <i class="fab fa-github"></i>
-            </a>
-            <a href="https://www.zhihu.com/people/ptkise" target="_self">
-              <i class="fab fa-zhihu"></i>
-            </a>
-            <a href="https://space.bilibili.com/174541536" target="_self">
-              <i class="fab fa-bilibili"></i>
-            </a>
-            <a href="https://blog.kisechan.space" target="_self">
-              <i class="fa-solid fa-blog"></i>
-            </a>
-            <a href="mailto:admin@kisechan.space" target="_self">
-              <i class="fa-solid fa-envelope"></i>
-            </a>
-          </div>
-          <div class="footer-content">
-            <p>
-              <a href="https://icp.gov.moe/?keyword=20251453" target="_self">萌ICP备20251453号</a>
-            </p>
-            <p>
-              &copy; 2025 By
-              <a href="https://github.com/Kisechan" target="_self" rel="nofollow noopener"><strong>Kisechan</strong></a>
-            </p>
-            <p style="font-size: 0.75em">
-              Made With <a href="https://cn.vuejs.org/">Vue3</a> & <a href="https://element-plus.org/zh-CN/">Element Plus</a>
-            </p>
-          </div>
         </el-col>
       </el-row>
     </el-main>
