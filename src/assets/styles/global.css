@@ -47,6 +47,7 @@ body {
   font-family: 'LXGW WenKai', sans-serif;
   margin: 0;
   padding: 0;
+  padding-top: 60px;
 }
 
 /* 设置代码或等宽文本的字体 */

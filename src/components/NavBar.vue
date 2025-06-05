@@ -131,6 +131,13 @@ initializeDarkMode();
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--el-bg-color, #ffffff); /* 使用 Element Plus 的背景色变量，或者您自定义的颜色 */
+  z-index: 1000;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
 .menu-items {
