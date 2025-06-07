@@ -27,14 +27,22 @@
           </div>
           <div class="footer-content">
             <p>
-              <a href="https://icp.gov.moe/?keyword=20251453" target="_self">萌ICP备20251453号</a>
+              <a href="https://icp.gov.moe/?keyword=20251453" target="_self"
+                >萌ICP备20251453号</a
+              >
             </p>
             <p>
               &copy; 2025 By
-              <a href="https://github.com/Kisechan" target="_self" rel="nofollow noopener"><strong>Kisechan</strong></a>
+              <a
+                href="https://github.com/Kisechan"
+                target="_self"
+                rel="nofollow noopener"
+                ><strong>Kisechan</strong></a
+              >
             </p>
             <p style="font-size: 0.75em">
-              Made With <a href="https://cn.vuejs.org/">Vue3</a> & <a href="https://element-plus.org/zh-CN/">Element Plus</a>
+              Made With <a href="https://cn.vuejs.org/">Vue3</a> &
+              <a href="https://element-plus.org/zh-CN/">Element Plus</a>
             </p>
           </div>
         </el-col>
@@ -48,18 +56,30 @@
             </p>
             <hr />
             <div class="github-calendar-container">
-              <h3><i class="fa-solid fa-code-branch"></i>My Github Contributions</h3>
+              <h3>
+                <i class="fa-solid fa-code-branch"></i>My Github Contributions
+              </h3>
               <div id="github-graph"></div>
             </div>
             <hr />
             <div class="rss-feed-container">
               <h3><i class="fa-solid fa-box-archive"></i>Latest Blog Posts</h3>
               <el-row :gutter="20">
-                <el-col v-for="item in feedItems" :key="item.link" :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+                <el-col
+                  v-for="item in feedItems"
+                  :key="item.link"
+                  :xs="24"
+                  :sm="12"
+                  :md="12"
+                  :lg="12"
+                  :xl="12"
+                >
                   <el-card class="blog-card" shadow="hover">
                     <div class="blog-header">
                       <i class="fa-solid fa-newspaper"></i>
-                      <a :href="item.link" target="_self" class="blog-title">{{ item.title }}</a>
+                      <a :href="item.link" target="_self" class="blog-title">{{
+                        item.title
+                      }}</a>
                     </div>
                     <div class="blog-meta">
                       <i class="fa-solid fa-clock-rotate-left"></i>
@@ -84,8 +104,16 @@
               </el-row>
             </div>
             <div class="read-more-container">
-              <el-tooltip content="前往博客查看更多文章" placement="top" class="read-more-tooltip">
-                <el-card class="read-more-card" shadow="hover" @click="goToBlog">
+              <el-tooltip
+                content="前往博客查看更多文章"
+                placement="top"
+                class="read-more-tooltip"
+              >
+                <el-card
+                  class="read-more-card"
+                  shadow="hover"
+                  @click="goToBlog"
+                >
                   <div class="read-more-content">
                     <span>Read More</span>
                     <i class="fa-brands fa-readme"></i>
@@ -102,42 +130,31 @@
 
 <script setup>
 import avatarUrl from "@/assets/avatar.png";
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted } from "vue";
+import GitHubCalendar from "github-calendar"; // 静态导入
 
-const isLoaded = ref(false);
 const feedItems = ref([]);
-const githubCalendarInstance = ref(null);
 
-const loadGitHubCalendar = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 100));
-  const calendarElement = document.getElementById("github-graph");
+const loadGitHubCalendar = () => {
+  const calendarContainerSelector = "#github-graph";
+  const calendarElement = document.querySelector(calendarContainerSelector);
+
   if (!calendarElement) {
-    console.error("Element #github-graph not found");
+    console.error(
+      `GitHub Calendar 目标元素未找到: ${calendarContainerSelector}`
+    );
     return;
   }
 
-  const GitHubCalendar = await import("github-calendar");
-  githubCalendarInstance.value = GitHubCalendar.default(calendarElement, "Kisechan", {
+  GitHubCalendar(calendarContainerSelector, "Kisechan", {
     responsive: true,
     tooltips: true,
     global_stats: false,
   });
-  isLoaded.value = true;
-};
-
-const cleanupGitHubCalendar = () => {
-  const calendarElement = document.getElementById("github-graph");
-  if (calendarElement) {
-    calendarElement.innerHTML = "";
-  }
-  if (githubCalendarInstance.value) {
-    githubCalendarInstance.value = null;
-  }
 };
 
 const fetchRSSFeed = async () => {
   const rssUrl = import.meta.env.VITE_RSS_FEED_URL;
-  console.log("Fetching RSS Feed:", rssUrl);
   try {
     const response = await fetch(rssUrl);
     const str = await response.text();
@@ -173,9 +190,6 @@ onMounted(() => {
   fetchRSSFeed();
 });
 
-onUnmounted(() => {
-  cleanupGitHubCalendar();
-});
 </script>
 
 <style scoped>
