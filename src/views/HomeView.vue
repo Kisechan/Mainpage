@@ -12,7 +12,7 @@
             <a href="https://github.com/Kisechan" target="_self">
               <i class="fab fa-github"></i>
             </a>
-            <a href="https://www.zhihu.com/people/ptkise" target="_self">
+            <a href="https://www.zhihu.com/people/kisechan" target="_self">
               <i class="fab fa-zhihu"></i>
             </a>
             <a href="https://space.bilibili.com/174541536" target="_self">

@@ -12,3 +12,7 @@
       title: "UptimeRobot 状态监控"
       description: "网站状态监控"
       url: "https://status.kisechan.space/"
+    - icon: "https://gitea.kisechan.space/assets/img/favicon.svg"
+      title: "Gitea"
+      description: "Gitea 代码托管"
+      url: "https://gitea.kisechan.space/"
