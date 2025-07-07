@@ -31,6 +31,7 @@
                 >萌ICP备20251453号</a
               >
             </p>
+            <span id="my-site-view">本站总访问量：加载中...</span>
             <p>
               &copy; 2025 By
               <a
@@ -44,9 +45,6 @@
               Made With <a href="https://cn.vuejs.org/">Vue3</a> &
               <a href="https://element-plus.org/zh-CN/">Element Plus</a>
             </p>
-          </div>
-          <div class="counter" align="center">
-            <span id="my-site-view">本站总访问量：加载中...</span>
           </div>
         </el-col>
         <el-col :xs="24" :sm="24" :md="16" :lg="16" :xl="16">
