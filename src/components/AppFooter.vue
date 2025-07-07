@@ -2,7 +2,11 @@
   <el-footer>
     <div class="footer-content">
       <div class="footer-text">
-        <p><a href="https://icp.gov.moe/?keyword=20251453" target="_blank">萌ICP备20251453号</a></p>
+        <p>
+          <a href="https://icp.gov.moe/?keyword=20251453" target="_blank"
+            >萌ICP备20251453号</a
+          >
+        </p>
         <p>
           &copy; 2025 By
           <a
@@ -12,16 +16,32 @@
             ><strong>Kisechan</strong></a
           >
         </p>
-        <p style="font-size: 0.75em;">
-          Made With <a href="https://cn.vuejs.org/">Vue3</a> & <a href="https://element-plus.org/zh-CN/">Element Plus</a>
+        <p style="font-size: 0.75em">
+          Made With <a href="https://cn.vuejs.org/">Vue3</a> &
+          <a href="https://element-plus.org/zh-CN/">Element Plus</a>
         </p>
+      </div>
+      <div class="counter" align="center">
+        <span id="my-site-view">本站总访问量：加载中...</span>
       </div>
     </div>
   </el-footer>
 </template>
 
 <script setup>
-// 可以在这里定义一些逻辑
+import { onMounted } from "vue";
+const counterJsUrl = import.meta.env.VITE_COUNTER_JS_URL;
+
+onMounted(() => {
+  if (counterJsUrl) {
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = counterJsUrl;
+    document.body.appendChild(script);
+  } else {
+    console.warn("VITE_COUNTER_JS_URL is not defined");
+  }
+});
 </script>
 
 <style scoped>
@@ -38,5 +58,4 @@
 /* .social-icons {
   margin-top: 10px;
 } */
-
 </style>

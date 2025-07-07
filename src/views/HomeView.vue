@@ -45,6 +45,9 @@
               <a href="https://element-plus.org/zh-CN/">Element Plus</a>
             </p>
           </div>
+          <div class="counter" align="center">
+            <span id="my-site-view">本站总访问量：加载中...</span>
+          </div>
         </el-col>
         <el-col :xs="24" :sm="24" :md="16" :lg="16" :xl="16">
           <el-card>
@@ -134,6 +137,7 @@ import { ref, onMounted } from "vue";
 import GitHubCalendar from "github-calendar"; // 静态导入
 
 const feedItems = ref([]);
+const counterJsUrl = import.meta.env.VITE_COUNTER_JS_URL;
 
 const loadGitHubCalendar = () => {
   const calendarContainerSelector = "#github-graph";
@@ -185,11 +189,22 @@ const goToBlog = () => {
   window.open("https://blog.kisechan.space", "_self");
 };
 
+const loadCounterScript = () => {
+  if (counterJsUrl) {
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = counterJsUrl;
+    document.body.appendChild(script);
+  } else {
+    console.warn("VITE_COUNTER_JS_URL is not defined");
+  }
+};
+
 onMounted(() => {
+  loadCounterScript();
   loadGitHubCalendar();
   fetchRSSFeed();
 });
-
 </script>
 
 <style scoped>
