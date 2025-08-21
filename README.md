@@ -37,14 +37,16 @@ npm install
 
 ### 构建
 
-克隆本仓库：
+1. **Fork 本仓库**
+
+2. **克隆你的新仓库**：
 
 ```bash
-git clone git@github.com:Kisechan/Mainpage.git
+git clone git@github.com:YourUsername/Mainpage.git
 cd Mainpage/
 ```
 
-启动开发服务器：
+3. **启动开发服务器**：
 
 ```bash
 npm run dev
@@ -52,7 +54,7 @@ npm run dev
 
 ---
 
-构建生产版本：
+4. **构建生产版本**：
 
 ```bash
 npm run build
